@@ -39,7 +39,7 @@ button?.addEventListener("click", (event: MouseEvent) => {
 
   simulateFetch({ id: Date.now(), title, content: "Новый пост" })
     .then(res => {
-      alert("Пост успешно добавлен: " + res.title);
+      alert("Пост успешно добавлен");
     })
     .catch(err => {
       if (err instanceof Error) alert(err.message);
@@ -65,7 +65,7 @@ function simulateFetch(post: Post): Promise<Post> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (post.title) resolve(post);
-      else reject(new Error("Ошибка при добавлении поста"));
+      else reject(new Error("Ошибка. У поста нет заголовкп."));
     }, 500);
   });
 }
