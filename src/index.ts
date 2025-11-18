@@ -16,7 +16,6 @@ const list = document.querySelector<HTMLUListElement>("#results");
 
 let timer: number | undefined;
 
-// ИСПРАВИЛ: заменил InputEvent на Event для совместимости
 input?.addEventListener("input", (event: Event) => {
   clearTimeout(timer);
   timer = window.setTimeout(() => {
@@ -40,9 +39,8 @@ button?.addEventListener("click", (event: MouseEvent) => {
 
   simulateFetch({ id: Date.now(), title, content: "Новый пост" })
     .then(res => {
-      // ДОБАВИЛ: добавляем пост в массив и показываем все посты
-      posts.push(res);
-      displayAllPosts();
+      posts.push(res);//Пушу в массив posts res(пост который добавляет пользователь)
+      displayAllPosts();//Функция, которая выводит все посты(в будущем)
       alert("Пост успешно добавлен");
     })
     .catch(err => {
@@ -74,18 +72,18 @@ function simulateFetch(post: Post): Promise<Post> {
   });
 }
 
-// ДОБАВИЛ: функция для отображения всех постов
+// ДОБАВИЛ: функция 
 function displayAllPosts() {
-  const allPostsContainer = document.querySelector<HTMLUListElement>("#allPosts");
-  if (!allPostsContainer) return;
+  const allPostsContainer = document.querySelector<HTMLUListElement>("#allPosts");//Находит список
+  if (!allPostsContainer) return;//Если allPostsContainer - возврат
   
-  allPostsContainer.innerHTML = "";
-  posts.forEach(post => {
-    const li = document.createElement("li");
-    li.innerHTML = `<strong>${post.title}</strong>: ${post.content}`;
-    allPostsContainer.appendChild(li);
+  allPostsContainer.innerHTML = ""; //Очищает список, убирает старые элементы
+  posts.forEach(post => { //Перебор массива
+    const li = document.createElement("li"); //Создаю li
+    li.innerHTML = `<strong>${post.title}</strong>: ${post.content}`;//текст поста в элемент
+    allPostsContainer.appendChild(li);//Добавление в ul, вывод на страницу
   });
 }
 
 // ДОБАВИЛ: показываем посты при загрузке страницы
-document.addEventListener('DOMContentLoaded', displayAllPosts);
+displayAllPosts();
