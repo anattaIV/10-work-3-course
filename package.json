@@ -11,5 +11,13 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.9.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anattaIV/10-work-3-course.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anattaIV/10-work-3-course/issues"
+  },
+  "homepage": "https://github.com/anattaIV/10-work-3-course#readme"
 }

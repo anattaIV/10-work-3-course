@@ -1,0 +1,34 @@
+body {
+    font-family: Arial;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.section {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+
+input, button {
+    padding: 8px;
+    margin: 5px 0;
+}
+
+button {
+    background: #007cba;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}

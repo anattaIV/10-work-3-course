@@ -1,4 +1,4 @@
-interface Post {//
+interface Post {
   id: number;
   title: string;
   content: string;
@@ -16,7 +16,8 @@ const list = document.querySelector<HTMLUListElement>("#results");
 
 let timer: number | undefined;
 
-input?.addEventListener("input", (event: InputEvent) => {
+// ИСПРАВИЛ: заменил InputEvent на Event для совместимости
+input?.addEventListener("input", (event: Event) => {
   clearTimeout(timer);
   timer = window.setTimeout(() => {
     const target = event.target as HTMLInputElement;
@@ -39,6 +40,9 @@ button?.addEventListener("click", (event: MouseEvent) => {
 
   simulateFetch({ id: Date.now(), title, content: "Новый пост" })
     .then(res => {
+      // ДОБАВИЛ: добавляем пост в массив и показываем все посты
+      posts.push(res);
+      displayAllPosts();
       alert("Пост успешно добавлен");
     })
     .catch(err => {
@@ -65,7 +69,23 @@ function simulateFetch(post: Post): Promise<Post> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (post.title) resolve(post);
-      else reject(new Error("Ошибка. У поста нет заголовкп."));
+      else reject(new Error("Ошибка. У поста нет заголовка.")); // ИСПРАВИЛ: опечатку
     }, 500);
   });
 }
+
+// ДОБАВИЛ: функция для отображения всех постов
+function displayAllPosts() {
+  const allPostsContainer = document.querySelector<HTMLUListElement>("#allPosts");
+  if (!allPostsContainer) return;
+  
+  allPostsContainer.innerHTML = "";
+  posts.forEach(post => {
+    const li = document.createElement("li");
+    li.innerHTML = `<strong>${post.title}</strong>: ${post.content}`;
+    allPostsContainer.appendChild(li);
+  });
+}
+
+// ДОБАВИЛ: показываем посты при загрузке страницы
+document.addEventListener('DOMContentLoaded', displayAllPosts);
