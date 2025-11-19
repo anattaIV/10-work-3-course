@@ -5,9 +5,11 @@ interface Post {
 }
 
 const posts: Post[] = [
-  { id: 1, title: "Hello world", content: "Первый пост" },
-  { id: 2, title: "TypeScript DOM", content: "Работа с элементами" },
-  { id: 3, title: "Debounce пример", content: "Поиск с задержкой" }
+  { id: 1, title: "Test1", content: "Lorem" },
+  { id: 2, title: "Test2", content: "ipum" },
+  { id: 3, title: "Testt", content: "Lorem" },
+  { id: 4, title: "Tect", content: "ispum" },
+  { id: 5, title: "other", content: "Lorem" }
 ];
 
 const input = document.querySelector<HTMLInputElement>("#search");
